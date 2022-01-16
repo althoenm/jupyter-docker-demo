@@ -1,0 +1,12 @@
+version: '3'
+services:
+  notebook:
+    container_name: python_notebook
+    labels:
+      name: jupyter notebook 
+    ports:
+      - "8888:8888"
+    # TODO bind individual creds file, remove from tmp
+    volumes:
+      - /Users/matte/Git/jupyter-docker-demo/data:/tmp
+    build: . 
