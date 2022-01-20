@@ -1,4 +1,4 @@
-FROM jupyter/minimal-notebook
+FROM jupyter/base-notebook:latest
 
 LABEL author="ALTHOENM" 
 
@@ -7,8 +7,11 @@ WORKDIR /tmp
 
 COPY ./data/requirements.txt /tmp/
 RUN pip install --requirement /tmp/requirements.txt
-COPY ./data/demo-notebook.ipynb /tmp/
 COPY ./data/credentials.py /tmp/
+COPY ./data/demo-notebook.ipynb /tmp/
+
+RUN chown -R $NB_UID:$NB_UID /tmp
+RUN chmod 755 /tmp
 
 USER $NB_UID
 
